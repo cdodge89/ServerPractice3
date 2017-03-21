@@ -18,11 +18,10 @@ app.get('/movies/:movieId/actors',function(req,res){
     setTimeout(function(){
         movie.getById(req.params.movieId,'actors').then(actors=>{
             res.writeHead(200);
-            console.log('INFO ',actors);
             res.write(JSON.stringify(actors));
             res.end();
         }).catch(error =>{
-            res.writeHead(400);
+            res.writeHead(404);
             res.write(error);
             res.end();
         });
@@ -31,9 +30,15 @@ app.get('/movies/:movieId/actors',function(req,res){
 app.get('/movies/:movieId/quotes',function(req,res){
     // Return all quotes from a move
     setTimeout(function(){
-        res.writeHead(200);
-        res.write();
-        res.end();
+        movie.getById(req.params.movieId,'quotes').then(quotes=>{
+            res.writeHead(200);
+            res.write(JSON.stringify(quotes));
+            res.end();
+        }).catch(error =>{
+            res.writeHead(404);
+            res.write(error);
+            res.end();
+        });
     },500);
 });
 
