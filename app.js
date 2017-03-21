@@ -3,7 +3,10 @@ var app = express();
 var port = 8080;
 var movies = require('./movies');
 var movie = new movies();
+var onlyGet = require('./only_get');
 // console.log('MOVIE',movie);
+
+app.use(onlyGet);
 
 app.get('/movies',function(req,res){
     // Return all info about all movies
